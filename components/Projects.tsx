@@ -16,7 +16,7 @@ export default function Projects({}: Props) {
         Projects
       </h3>
 
-      <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20">
+      <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#ff9988]/10 z-20">
         {/* projects */}
         {projects.map((project, idx) => (
           <div className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
@@ -26,7 +26,7 @@ export default function Projects({}: Props) {
             />
 
             <div>
-              <h4>
+              <h4 key={idx}>
                 Project {idx + 1} of {projects.length}: Project
               </h4>
             </div>
