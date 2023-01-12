@@ -1,4 +1,4 @@
-import type { GetServerSideProps } from "next";
+import type { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import About from "../components/About";
@@ -9,9 +9,7 @@ import Skills from "../components/Skills";
 import WorkExperience from "../components/WorkExperience";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 import { PageInfo, Skill, Socials } from "../types/type";
-import { fetchPageInfo } from "../utils/fetchPageInfo";
-import { fetchSocials } from "../utils/fetchSocials";
-import { fetchSkills } from "../utils/fetchSkills";
+import { client } from "../sanity";
 
 type Props = {
   pageInfo: PageInfo;
@@ -69,10 +67,10 @@ const Home = ({ pageInfo, socials, skills }: Props) => {
 
 export default Home;
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const pageInfo: PageInfo = await fetchPageInfo();
-  const socials: Socials[] = await fetchSocials();
-  const skills: Skill[] = await fetchSkills();
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const pageInfo: PageInfo = await client.fetch(`*[_type == "pageInfo"][0]`);
+  const socials: Socials[] = await client.fetch(`*[_type == "social"]`);
+  const skills: Skill[] = await client.fetch(`*[_type == "skill"]`);
 
   return {
     props: {
@@ -80,5 +78,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
       socials,
       skills,
     },
+
+    revalidate: 10,
   };
 };

@@ -1,4 +1,4 @@
-import { createClient } from 'next-sanity'
+import sanityClient from '@sanity/client';
 import createImageUrlBuilder from '@sanity/image-url'
 
 export const config = {
@@ -8,7 +8,7 @@ export const config = {
   useCdn: process.env.NODE_ENV === 'production', // server-side is statically generated, the CDN is only necessary beneficial if queries are called on-demand
 }
 
-export const sanityClient = createClient(config);
-
 export const urlFor = (source: any) =>
   createImageUrlBuilder(config).image(source);
+
+export const client = sanityClient(config);
