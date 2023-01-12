@@ -2,10 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import ExperienceCard from "./ExperienceCard";
 import SkillCard from "./SkillCard";
+import { Skill } from "../types/type";
 
-type Props = {};
+type SkillsProps = {
+  skills: Skill[];
+};
 
-export default function Skills({}: Props) {
+export default function Skills({ skills }: SkillsProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -22,12 +25,15 @@ export default function Skills({}: Props) {
       </h3> */}
 
       <div className="grid grid-cols-4 gap-5">
+        {skills.map((skill) => (
+          <SkillCard key={skill._id} skill={skill} />
+        ))}
+        {/* <SkillCard />
         <SkillCard />
         <SkillCard />
         <SkillCard />
         <SkillCard />
-        <SkillCard />
-        <SkillCard />
+        <SkillCard /> */}
       </div>
     </motion.div>
   );

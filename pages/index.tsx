@@ -8,16 +8,18 @@ import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import WorkExperience from "../components/WorkExperience";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
-import { PageInfo, Socials } from "../types/type";
+import { PageInfo, Skill, Socials } from "../types/type";
 import { fetchPageInfo } from "../utils/fetchPageInfo";
 import { fetchSocials } from "../utils/fetchSocials";
+import { fetchSkills } from "../utils/fetchSkills";
 
 type Props = {
   pageInfo: PageInfo;
   socials: Socials[];
+  skills: Skill[];
 };
 
-const Home = ({ pageInfo, socials }: Props) => {
+const Home = ({ pageInfo, socials, skills }: Props) => {
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#ff9988]/10">
       <Head>
@@ -44,7 +46,7 @@ const Home = ({ pageInfo, socials }: Props) => {
 
       {/* Skills */}
       <section id="skills" className="snap-center">
-        <Skills />
+        <Skills skills={skills} />
       </section>
 
       {/* Proj */}
@@ -70,13 +72,13 @@ export default Home;
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const pageInfo: PageInfo = await fetchPageInfo();
   const socials: Socials[] = await fetchSocials();
+  const skills: Skill[] = await fetchSkills();
 
   return {
     props: {
       pageInfo,
       socials,
+      skills,
     },
-
-    revalidate: 10,
   };
 };
