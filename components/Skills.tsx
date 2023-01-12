@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import ExperienceCard from "./ExperienceCard";
 import SkillCard from "./SkillCard";
 import { Skill } from "../types/type";
 
@@ -28,12 +27,6 @@ export default function Skills({ skills }: SkillsProps) {
         {skills.map((skill) => (
           <SkillCard key={skill._id} skill={skill} />
         ))}
-        {/* <SkillCard />
-        <SkillCard />
-        <SkillCard />
-        <SkillCard />
-        <SkillCard />
-        <SkillCard /> */}
       </div>
     </motion.div>
   );

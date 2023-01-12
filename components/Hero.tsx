@@ -10,7 +10,7 @@ type HeroProps = {
 };
 
 export default function Hero({pageInfo}: HeroProps) {
-  const [text, count] = useTypewriter({
+  const [text] = useTypewriter({
     words: [`Hi, I'm ${pageInfo?.name}`, `${pageInfo?.role}`],
     loop: true,
     delaySpeed: 2000,
