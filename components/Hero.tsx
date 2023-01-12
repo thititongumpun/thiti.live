@@ -1,14 +1,17 @@
 import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import BackgroundSquare from "./BackgroundSquare";
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { PageInfo } from "../types/type";
+import { urlFor } from "../sanity";
 
-type Props = {};
+type HeroProps = {
+  pageInfo: PageInfo
+};
 
-export default function Hero({}: Props) {
+export default function Hero({pageInfo}: HeroProps) {
   const [text, count] = useTypewriter({
-    words: ["Hi, I'm Not", "Software Engineer"],
+    words: [`Hi, I'm ${pageInfo?.name}`, `${pageInfo?.role}`],
     loop: true,
     delaySpeed: 2000,
   });
@@ -16,7 +19,7 @@ export default function Hero({}: Props) {
     <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
       <BackgroundSquare />
       <img
-        src="https://thiti.live/static/me-a02b48747aeda9c137b972a61e0c44ad.jpg"
+        src={urlFor(pageInfo?.heroImage).url()}
         alt=""
         className="relative rounded-full h-32 w-32 mx-auto object-cover"
       />
