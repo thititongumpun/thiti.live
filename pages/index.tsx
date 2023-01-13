@@ -8,16 +8,21 @@ import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import WorkExperience from "../components/WorkExperience";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
-import { PageInfo, Skill, Socials } from "../types/type";
+import { Experience, PageInfo, Project, Skill, Socials } from "../types/type";
 import { client } from "../sanity";
 
 type Props = {
   pageInfo: PageInfo;
   socials: Socials[];
   skills: Skill[];
+  projects: Project[];
+  experiences: Experience[];
 };
 
-const Home = ({ pageInfo, socials, skills }: Props) => {
+const Home = ({ pageInfo, socials, skills, projects, experiences }: Props) => {
+  
+
+  console.log(experiences);
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#ff9988]/10">
       <Head>
@@ -34,12 +39,12 @@ const Home = ({ pageInfo, socials, skills }: Props) => {
 
       {/* About */}
       <section id="about" className="snap-center">
-        <About />
+        <About pageInfo={pageInfo} />
       </section>
 
       {/* Exp */}
       <section id="experience" className="snap-center">
-        <WorkExperience />
+        <WorkExperience experiences={experiences} />
       </section>
 
       {/* Skills */}
@@ -49,7 +54,7 @@ const Home = ({ pageInfo, socials, skills }: Props) => {
 
       {/* Proj */}
       <section id="projects" className="snap-start">
-        <Projects />
+        <Projects projects={projects} />
       </section>
 
       {/* Contact */}
@@ -71,12 +76,18 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const pageInfo: PageInfo = await client.fetch(`*[_type == "pageInfo"][0]`);
   const socials: Socials[] = await client.fetch(`*[_type == "social"]`);
   const skills: Skill[] = await client.fetch(`*[_type == "skill"]`);
+  const projects: Project[] = await client.fetch(`*[_type == "project"]`);
+  const experiences: Experience[] = await client.fetch(
+    `*[_type == "experience"]`
+  );
 
   return {
     props: {
       pageInfo,
       socials,
       skills,
+      projects,
+      experiences
     },
 
     revalidate: 10,

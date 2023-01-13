@@ -36,3 +36,22 @@ export interface Skill extends SanityBody {
   progress: number;
   title: string;
 }
+
+export interface Experience extends SanityBody {
+  _type: "experienece";
+  company: string;
+  companyImage: Image;
+  dateStarted: string;
+  dateEnded: string;
+  isCurrenyWorkingHere: boolean;
+  jobTitle: string;
+  points: string[];
+}
+
+export interface Project extends SanityBody {
+  _type: "project";
+  title: string;
+  image: Image;
+  summary: string;
+  linkToBuild: string;
+}

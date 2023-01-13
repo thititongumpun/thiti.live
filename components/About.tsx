@@ -1,9 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { PageInfo } from "../types/type";
 
-type Props = {};
+type AboutProps = {
+  pageInfo: PageInfo;
+};
 
-export default function About({}: Props) {
+export default function About({pageInfo}: AboutProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -17,10 +20,7 @@ export default function About({}: Props) {
       <div className="space-y-10 px-0 md:px-10">
         <h4 className="text-4xl font-semibold">Some about me.</h4>
         <p className="text-sm">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur et
-          eius distinctio laborum numquam molestiae culpa. Soluta, laborum
-          veritatis iure sequi, numquam et dolorem esse ducimus minima eligendi
-          aspernatur obcaecati.
+          {pageInfo?.backgroundInformation}
         </p>
       </div>
     </motion.div>

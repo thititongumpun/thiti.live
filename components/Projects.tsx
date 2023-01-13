@@ -1,10 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Project } from "../types/type";
+import { urlFor } from "../sanity";
 
-type Props = {};
+type ProjectProps = {
+  projects: Project[]
+};
 
-export default function Projects({}: Props) {
-  const projects = [1, 2, 3, 4, 5];
+export default function Projects({projects}: ProjectProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -20,17 +23,17 @@ export default function Projects({}: Props) {
         {/* projects */}
         {projects.map((project, idx) => (
           <div
-            key={idx}
+            key={project._id}
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
           >
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSptuL6mTCgEvwh-Kx-U4NMiyZV9dCBN3dAkA&usqp=CAU"
+              src={urlFor(project?.image).url()}
               alt=""
             />
 
             <div>
               <h4>
-                Project {idx + 1} of {projects.length}: Project
+                Project {idx + 1} of {projects.length}: {project.title}
               </h4>
             </div>
           </div>
