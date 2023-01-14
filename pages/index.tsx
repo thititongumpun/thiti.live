@@ -72,7 +72,10 @@ export default Home;
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const pageInfo: PageInfo = await client.fetch(`*[_type == "pageInfo"][0]`);
   const socials: Socials[] = await client.fetch(`*[_type == "social"]`);
-  const skills: Skill[] = await client.fetch(`*[_type == "skill"]`);
+  const skills: Skill[] = await client.fetch(`*[_type == "skill"] {
+    ...,
+    skillType[]->
+  }`);
   const projects: Project[] = await client.fetch(
     `*[_type == "project"] {
     ...,
