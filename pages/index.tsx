@@ -20,9 +20,6 @@ type Props = {
 };
 
 const Home = ({ pageInfo, socials, skills, projects, experiences }: Props) => {
-  
-
-  console.log(experiences);
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#ff9988]/10">
       <Head>
@@ -48,7 +45,7 @@ const Home = ({ pageInfo, socials, skills, projects, experiences }: Props) => {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="snap-center">
+      <section id="skills" className="snap-start">
         <Skills skills={skills} />
       </section>
 
@@ -76,9 +73,17 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const pageInfo: PageInfo = await client.fetch(`*[_type == "pageInfo"][0]`);
   const socials: Socials[] = await client.fetch(`*[_type == "social"]`);
   const skills: Skill[] = await client.fetch(`*[_type == "skill"]`);
-  const projects: Project[] = await client.fetch(`*[_type == "project"]`);
+  const projects: Project[] = await client.fetch(
+    `*[_type == "project"] {
+    ...,
+    technologies[]->
+    }`
+  );
   const experiences: Experience[] = await client.fetch(
-    `*[_type == "experience"]`
+    `*[_type == "experience"] {
+      ...,
+      technologies[]->
+      }`
   );
 
   return {
@@ -87,7 +92,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       socials,
       skills,
       projects,
-      experiences
+      experiences,
     },
 
     revalidate: 10,

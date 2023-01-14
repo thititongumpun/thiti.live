@@ -4,10 +4,10 @@ import { Project } from "../types/type";
 import { urlFor } from "../sanity";
 
 type ProjectProps = {
-  projects: Project[]
+  projects: Project[];
 };
 
-export default function Projects({projects}: ProjectProps) {
+export default function Projects({ projects }: ProjectProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -26,15 +26,27 @@ export default function Projects({projects}: ProjectProps) {
             key={project._id}
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
           >
-            <img
-              src={urlFor(project?.image).url()}
-              alt=""
-            />
+            <img src={urlFor(project?.image).url()} alt="" />
 
             <div>
               <h4>
-                Project {idx + 1} of {projects.length}: {project.title}
+                Project {idx + 1} of {projects.length}: {project?.title}
               </h4>
+
+              <div className="flex items-center space-x-2 justify-center">
+                {project?.technologies.map((technology) => (
+                  <img
+                  key={technology._id}
+                    className="h-5 w-5"
+                    src={urlFor(technology.image).url()}
+                    alt=""
+                  />
+                ))}
+              </div>
+
+              <div className="text-lg text-center md:text-left">
+                {project?.summary}
+              </div>
             </div>
           </div>
         ))}
