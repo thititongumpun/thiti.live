@@ -18,7 +18,6 @@ export default function Projects({ projects }: ProjectProps) {
       <h3 className="absolute top-24 uppercase tracking-wider text-gray-500 text-2xl">
         Projects
       </h3>
-
       <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#ff9988]/10 z-20">
         {/* projects */}
         {projects.map((project, idx) => (
@@ -26,13 +25,21 @@ export default function Projects({ projects }: ProjectProps) {
             key={project._id}
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
           >
-            <img src={urlFor(project?.image).url()} alt="" className="object-contain h-48 w-96"/>
+            <img
+              src={urlFor(project?.image).url()}
+              alt=""
+              className="object-contain h-48 w-96"
+            />
 
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">
               <h4 className="text-4xl font-semibold text-center">
                 Project {idx + 1} of {projects.length}:
-                <span>{" "}
-                  {project?.title}</span>
+                <span>
+                  {" "}
+                  <a href={project?.linkToBuild} target="_blank">
+                    {project?.title}
+                  </a>
+                </span>
               </h4>
 
               <div className="flex items-center space-x-2 justify-center">
