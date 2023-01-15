@@ -3,6 +3,7 @@ import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 import { Socials } from "../types/type";
 import Link from "next/link";
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
 
 type HeaderProps = {
   socials: Socials[];
@@ -38,12 +39,7 @@ export default function Header({ socials }: HeaderProps) {
           animate={{ x: 0, opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
         >
-          <SocialIcon
-            className="cursor-pointer"
-            network="email"
-            fgColor="gray"
-            bgColor="transparent"
-          />
+          <EnvelopeIcon className="w-8 h-8 bg-transparent mt-3" />
         </motion.div>
       </Link>
     </header>
