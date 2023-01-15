@@ -20,9 +20,15 @@ export default function WorkExperience({ experiences }: Props) {
       </h3>
       {/* Card */}
       <div className="w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#ff9988]/10">
-        {experiences.map((exp) => (
-          <ExperienceCard key={exp._id} experience={exp} />
-        ))}
+        {experiences
+          .sort(
+            (a, b) =>
+              new Date(b.dateStarted).getTime() -
+              new Date(a.dateStarted).getTime()
+          )
+          .map((exp) => (
+            <ExperienceCard key={exp._id} experience={exp} />
+          ))}
       </div>
     </motion.div>
   );

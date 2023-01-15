@@ -26,18 +26,20 @@ export default function Projects({ projects }: ProjectProps) {
             key={project._id}
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
           >
-            <img src={urlFor(project?.image).url()} alt="" />
+            <img src={urlFor(project?.image).url()} alt="" className="object-contain h-48 w-96"/>
 
-            <div>
-              <h4>
-                Project {idx + 1} of {projects.length}: {project?.title}
+            <div className="space-y-10 px-0 md:px-10 max-w-6xl">
+              <h4 className="text-4xl font-semibold text-center">
+                Project {idx + 1} of {projects.length}:
+                <span>{" "}
+                  {project?.title}</span>
               </h4>
 
               <div className="flex items-center space-x-2 justify-center">
                 {project?.technologies.map((technology) => (
                   <img
-                  key={technology._id}
-                    className="h-5 w-5"
+                    key={technology._id}
+                    className="h-6 w-6"
                     src={urlFor(technology.image).url()}
                     alt=""
                   />
