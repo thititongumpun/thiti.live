@@ -10,6 +10,7 @@ import WorkExperience from "../components/WorkExperience";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 import { Experience, PageInfo, Project, Skill, Socials } from "../types/type";
 import { client } from "../sanity";
+import ContactMe from "../components/ContactMe";
 
 type Props = {
   pageInfo: PageInfo;
@@ -55,6 +56,9 @@ const Home = ({ pageInfo, socials, skills, projects, experiences }: Props) => {
       </section>
 
       {/* Contact */}
+      <section id="contact" className="snap-start">
+        <ContactMe />
+      </section>
 
       <Link href="#hero">
         <footer className="sticky bottom-5 w-full cursor-pointer">
@@ -72,7 +76,8 @@ export default Home;
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const pageInfo: PageInfo = await client.fetch(`*[_type == "pageInfo"][0]`);
   const socials: Socials[] = await client.fetch(`*[_type == "social"]`);
-  const skills: Skill[] = await client.fetch(`*[_type == "skill"] {
+  const skills: Skill[] = await client.fetch(
+    `*[_type == "skill"] {
     ...,
     skillType[]->
   }`);

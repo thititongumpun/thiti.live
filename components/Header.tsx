@@ -2,6 +2,7 @@ import React from "react";
 import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 import { Socials } from "../types/type";
+import Link from "next/link";
 
 type HeaderProps = {
   socials: Socials[];
@@ -27,22 +28,24 @@ export default function Header({ socials }: HeaderProps) {
         ))}
       </motion.div>
 
-      <motion.div
-        initial={{
-          x: 500,
-          opacity: 0,
-          scale: 0.5,
-        }}
-        animate={{ x: 0, opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <SocialIcon
-          className="cursor-pointer"
-          network="email"
-          fgColor="gray"
-          bgColor="transparent"
-        />
-      </motion.div>
+      <Link href="#contact">
+        <motion.div
+          initial={{
+            x: 500,
+            opacity: 0,
+            scale: 0.5,
+          }}
+          animate={{ x: 0, opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <SocialIcon
+            className="cursor-pointer"
+            network="email"
+            fgColor="gray"
+            bgColor="transparent"
+          />
+        </motion.div>
+      </Link>
     </header>
   );
 }
