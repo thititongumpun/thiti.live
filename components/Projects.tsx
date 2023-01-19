@@ -46,7 +46,7 @@ export default function Projects({ projects }: ProjectProps) {
                 {project?.technologies.map((technology) => (
                   <img
                     key={technology._id}
-                    className="h-6 w-6"
+                    className="h-10 w-10"
                     src={urlFor(technology.image).url()}
                     alt=""
                   />

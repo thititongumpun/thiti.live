@@ -18,7 +18,6 @@ export default function About({pageInfo}: AboutProps) {
         About
       </h3>
       <div className="space-y-10 px-0 md:px-10">
-        <h4 className="text-4xl font-semibold">Some about me.</h4>
         <p className="text-sm">
           {pageInfo?.backgroundInformation}
         </p>

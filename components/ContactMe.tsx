@@ -31,7 +31,7 @@ export default function ContactMe({}: Props) {
 
           <div className="flex items-center space-x-5 justify-center">
             <MapPinIcon className="h-7 w-7 animate-pulse" />
-            <p className="text-2xl">Bangkok TH</p>
+            <p className="text-2xl">Nonthaburi, TH</p>
           </div>
         </div>
         
