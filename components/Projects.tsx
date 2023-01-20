@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Project } from "../types/type";
 import { urlFor } from "../sanity";
+import Image from "next/image";
 
 type ProjectProps = {
   projects: Project[];
@@ -25,10 +26,11 @@ export default function Projects({ projects }: ProjectProps) {
             key={project._id}
             className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
           >
-            <img
+            <Image
               src={urlFor(project?.image).url()}
               alt=""
-              className="object-contain h-48 w-96"
+              width={150}
+              height={150}
             />
 
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">

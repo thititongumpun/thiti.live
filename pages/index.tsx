@@ -106,6 +106,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       experiences,
     },
 
-    revalidate: 10,
+    revalidate: 30,
   };
 };

@@ -4,12 +4,13 @@ import BackgroundSquare from "./BackgroundSquare";
 import Link from "next/link";
 import { PageInfo } from "../types/type";
 import { urlFor } from "../sanity";
+import Image from "next/image";
 
 type HeroProps = {
-  pageInfo: PageInfo
+  pageInfo: PageInfo;
 };
 
-export default function Hero({pageInfo}: HeroProps) {
+export default function Hero({ pageInfo }: HeroProps) {
   const [text] = useTypewriter({
     words: [`Hi, I'm ${pageInfo?.name}`, `${pageInfo?.role}`],
     loop: true,
@@ -18,10 +19,12 @@ export default function Hero({pageInfo}: HeroProps) {
   return (
     <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
       <BackgroundSquare />
-      <img
+      <Image
         src={urlFor(pageInfo?.heroImage).url()}
         alt=""
-        className="relative rounded-full h-32 w-32 mx-auto object-cover"
+        className="relative rounded-full  mx-auto object-cover"
+        width={150}
+        height={150}
       />
       <h1 className="text-4xl lg:text-6xl font-semibold px-10">
         <span className="pb-2 tracking-widest mr-3">{text}</span>
