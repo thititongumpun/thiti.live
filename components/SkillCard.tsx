@@ -25,6 +25,7 @@ export default function SkillCard({ skill, directionLeft }: SkillCardProps) {
           src={urlFor(skill?.image).url()}
           alt="..."
           fill
+          priority
           sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"

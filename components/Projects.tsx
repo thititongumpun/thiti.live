@@ -31,6 +31,7 @@ export default function Projects({ projects }: ProjectProps) {
               alt=""
               width={150}
               height={150}
+              priority
             />
 
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">

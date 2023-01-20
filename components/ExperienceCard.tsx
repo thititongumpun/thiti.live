@@ -23,6 +23,7 @@ export default function ExperienceCard({ experience }: Props) {
           className="rounded-full object-cover object-center"
           width={200}
           height={200}
+          priority
         />
       </motion.div>
       <div className="px-0 md:px-10">

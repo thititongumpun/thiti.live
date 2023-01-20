@@ -25,6 +25,7 @@ export default function Hero({ pageInfo }: HeroProps) {
         className="relative rounded-full  mx-auto object-cover"
         width={150}
         height={150}
+        priority
       />
       <h1 className="text-4xl lg:text-6xl font-semibold px-10">
         <span className="pb-2 tracking-widest mr-3">{text}</span>
